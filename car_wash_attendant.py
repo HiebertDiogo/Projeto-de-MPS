@@ -1,23 +1,89 @@
+import re
+from datetime import datetime
+
 class CarWashAttendant:
     def __init__(self):
         self.records = []
 
+    def _validate_cpf(self, cpf):
+
+        cpf = re.sub(r'\D', '', cpf)
+        
+        if len(cpf) != 11:
+            return False
+            
+        return True
+
+    def _validate_email(self, email):
+        pattern = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+        return re.match(pattern, email) is not None
+
+    def _validate_date(self, date_str):
+        try:
+            datetime.strptime(date_str, "%d/%m/%Y")
+            return True
+        except ValueError:
+            return False
+
+    def _validate_plate(self, plate):
+        # format (ABC-1234) and Mercosul (ABC1D23)
+        # Removing hyphens for validation
+        clean_plate = plate.replace("-", "").upper()
+        # Basic regex for Brazil plates
+        pattern = r'^[A-Z]{3}[0-9][0-9A-Z][0-9]{2}$'
+        return re.match(pattern, clean_plate) is not None
+
     def register_user(self):
         print("\n=== USER / VEHICLE REGISTRATION ===")
-        name = input("Name: ").strip()
-        birth_date = input("Birth date (dd/mm/yyyy): ").strip()
-        email = input("Email: ").strip()
-        cpf = input("CPF: ").strip()
-        plate = input("Vehicle plate: ").strip()
-        model = input("Vehicle model: ").strip()
-        color = input("Vehicle color: ").strip()
+        
+        while True:
+            name = input("Name: ").strip()
+            if name:
+                break
+            print("Name cannot be empty.")
+
+        while True:
+            birth_date = input("Birth date (dd/mm/yyyy): ").strip()
+            if self._validate_date(birth_date):
+                break
+            print("Invalid date. Please use format dd/mm/yyyy.")
+
+        while True:
+            email = input("Email: ").strip()
+            if self._validate_email(email):
+                break
+            print("Invalid email format.")
+
+        while True:
+            cpf = input("CPF: ").strip()
+            if self._validate_cpf(cpf):
+                break
+            print("Invalid CPF. Please enter a valid 11-digit CPF.")
+
+        while True:
+            plate = input("Vehicle plate: ").strip()
+            if self._validate_plate(plate):
+                break
+            print("Invalid plate format. Example: ABC1234 or ABC1D23")
+
+        while True:
+            model = input("Vehicle model: ").strip()
+            if model:
+                break
+            print("Model cannot be empty.")
+
+        while True:
+            color = input("Vehicle color: ").strip()
+            if color:
+                break
+            print("Color cannot be empty.")
 
         record = {
             "name": name,
             "birth_date": birth_date,
             "email": email,
-            "cpf": cpf,
-            "plate": plate,
+            "cpf": re.sub(r'\D', '', cpf), # Store only numbers
+            "plate": plate.upper(),
             "model": model,
             "color": color,
         }
