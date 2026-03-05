@@ -57,7 +57,7 @@ main.py            # launcher
 
 ---
 
-## Regras de Login (pedido do professor)
+## Regras de Login 
 
 Validação do **login**:
 - Não pode ser vazio
