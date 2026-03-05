@@ -1,5 +1,5 @@
-from car_wash_attendant import CarWashAttendant
+
+from carwash.main_carwash import main
 
 if __name__ == "__main__":
-    system = CarWashAttendant()
-    system.menu()
+    main()

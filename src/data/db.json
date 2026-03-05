@@ -1,0 +1,109 @@
+{
+  "users": [
+    {
+      "user_id": "5019d1f6-248d-4ca8-882a-b7ff5c64a92a",
+      "name": "Teste",
+      "birth_date": "01/01/2000",
+      "email": "teste@mail.com",
+      "cpf": "12345678901"
+    },
+    {
+      "user_id": "052e1bba-5deb-499e-8f11-d1c747826f38",
+      "name": "Bruno M",
+      "birth_date": "25/01/2004",
+      "email": "brunoblabla@gmail.com",
+      "cpf": "78945632145"
+    },
+    {
+      "user_id": "0d56b172-b9dc-4220-ab9f-7e12c106bfae",
+      "name": "Bruno",
+      "birth_date": "25/01/2004",
+      "email": "brunoblabla@gmail.com",
+      "cpf": "78945612397"
+    },
+    {
+      "user_id": "eff337be-3872-43a0-a5cb-85a24c1186f8",
+      "name": "Labubu",
+      "birth_date": "25/12/2005",
+      "email": "labubonico@gmail.com",
+      "cpf": "66666666666"
+    },
+    {
+      "user_id": "c6984075-c9bb-40e6-94d8-1246089d6de4",
+      "name": "Giovane",
+      "birth_date": "25/01/2004",
+      "email": "giovane@gmail.com",
+      "cpf": "01867688697"
+    }
+  ],
+  "vehicles": [
+    {
+      "plate": "ABC1D23",
+      "model": "Gol",
+      "color": "Preto",
+      "owner_user_id": "5019d1f6-248d-4ca8-882a-b7ff5c64a92a"
+    },
+    {
+      "plate": "EMY-2301",
+      "model": "SW4",
+      "color": "Preta",
+      "owner_user_id": "0d56b172-b9dc-4220-ab9f-7e12c106bfae"
+    },
+    {
+      "plate": "LBB-6666",
+      "model": "Fusca",
+      "color": "Rosa",
+      "owner_user_id": "eff337be-3872-43a0-a5cb-85a24c1186f8"
+    },
+    {
+      "plate": "GIO-9999",
+      "model": "SUV",
+      "color": "Preto",
+      "owner_user_id": "c6984075-c9bb-40e6-94d8-1246089d6de4"
+    }
+  ],
+  "services": [
+    {
+      "service_id": "e825f891-65e8-4b68-bb42-416f66fea79e",
+      "name": "Lavagem simples",
+      "price_brl": 30.0
+    },
+    {
+      "service_id": "d9689532-889b-4537-a110-f25cfccb93cb",
+      "name": "Lavagem",
+      "price_brl": 50.0
+    }
+  ],
+  "orders": [
+    {
+      "order_id": "105515a3-11a2-4189-9089-0957a46a8f78",
+      "user_id": "5019d1f6-248d-4ca8-882a-b7ff5c64a92a",
+      "vehicle_plate": "ABC1D23",
+      "service_ids": [
+        "e825f891-65e8-4b68-bb42-416f66fea79e"
+      ],
+      "created_at": "2026-03-05T01:36:46",
+      "total_brl": 30.0
+    }
+  ],
+  "accounts": [
+    {
+      "user_id": "5019d1f6-248d-4ca8-882a-b7ff5c64a92a",
+      "login": "ABCDEFGHIJKL",
+      "password_hash": "8915815ffbf16e6591053774175f125194573377641e0f4113c92dde0e491337",
+      "salt": "f82e88c379a9edb2ea5acf66b39ebf31"
+    },
+    {
+      "user_id": "052e1bba-5deb-499e-8f11-d1c747826f38",
+      "login": "marquezbruno",
+      "password_hash": "53cd761903d66d4cf1693b48a6793e5ef7935be4e4f6010eae5c20f3eb2a86d7",
+      "salt": "f99ccae8b0ebf7e0d4bef59e7b080a21"
+    },
+    {
+      "user_id": "c6984075-c9bb-40e6-94d8-1246089d6de4",
+      "login": "giogiogiogio",
+      "password_hash": "b2c45d4bc942e99a3dec9c375a416b972243c481128e9397b38bce877714a19f",
+      "salt": "8c99e9cd3b5a3f3abee0f51a71911b45"
+    }
+  ]
+}
