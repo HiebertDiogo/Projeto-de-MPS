@@ -11,6 +11,7 @@ from carwash.repositories.order_repo import OrderRepo
 from carwash.repositories.account_repo import AccountRepo
 from carwash.services.carwash_service import CarWashService
 from carwash.services.auth_service import AuthService
+from carwash.logger.python_logging_adapter import build_python_logging_adapter
 from carwash.ui.menu import Menu
 
 
@@ -25,8 +26,10 @@ def main() -> None:
     order_repo = OrderRepo(db)
     account_repo = AccountRepo(db)
 
-    carwash_service = CarWashService(user_repo, vehicle_repo, service_repo, order_repo)
-    auth_service = AuthService(account_repo)
+    logger = build_python_logging_adapter("carwash")
+
+    carwash_service = CarWashService(user_repo, vehicle_repo, service_repo, order_repo, logger)
+    auth_service = AuthService(account_repo, logger)
 
     Menu(carwash_service, auth_service).run()
 

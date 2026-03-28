@@ -34,6 +34,20 @@
       "birth_date": "25/01/2004",
       "email": "giovane@gmail.com",
       "cpf": "01867688697"
+    },
+    {
+      "user_id": "22f39f5d-7af8-4ffd-8477-07b21070529d",
+      "name": "lucas",
+      "birth_date": "18/05/2002",
+      "email": "lucasleite@gmail.com",
+      "cpf": "70811740439"
+    },
+    {
+      "user_id": "61221e07-0260-4033-88b6-7518e3367305",
+      "name": "fusca",
+      "birth_date": "18/05/2002",
+      "email": "lucasat@gmail.com",
+      "cpf": "64343254398"
     }
   ],
   "vehicles": [
@@ -104,6 +118,12 @@
       "login": "giogiogiogio",
       "password_hash": "b2c45d4bc942e99a3dec9c375a416b972243c481128e9397b38bce877714a19f",
       "salt": "8c99e9cd3b5a3f3abee0f51a71911b45"
+    },
+    {
+      "user_id": "22f39f5d-7af8-4ffd-8477-07b21070529d",
+      "login": "lucasleiteat",
+      "password_hash": "8211aea3e1221cded1ab0dfcbbc641b1d2b183374f0f262b7b019b7eddd74ba7",
+      "salt": "f8a3e4b4f8b0f7d97725c7eb424ec90b"
     }
   ]
 }
