@@ -13,6 +13,10 @@ from carwash.repositories.user_repo import UserRepo
 from carwash.repositories.vehicle_repo import VehicleRepo
 from carwash.repositories.service_repo import ServiceRepo
 from carwash.repositories.order_repo import OrderRepo
+from carwash.repositories.account_repo import AccountRepo
+from carwash.services.reports.abstract_report import AbstractReport
+from carwash.services.reports.html_report import HtmlReport
+from carwash.services.reports.txt_report import TxtReport
 from carwash.services.validators import (
     validate_non_empty,
     validate_birth_date,
@@ -26,12 +30,13 @@ from carwash.logger.i_logger import ILogger
 
 class CarWashService:
     """Business rules (no input()) live here."""
-    def __init__(self, user_repo: UserRepo, vehicle_repo: VehicleRepo, service_repo: ServiceRepo, order_repo: OrderRepo, logger: ILogger):
+    def __init__(self, user_repo: UserRepo, vehicle_repo: VehicleRepo, service_repo: ServiceRepo, order_repo: OrderRepo, logger: ILogger, account_repo: AccountRepo):
         self.user_repo = user_repo
         self.vehicle_repo = vehicle_repo
         self.service_repo = service_repo
         self.order_repo = order_repo
         self.logger = logger
+        self.account_repo = account_repo
 
     # ---------- USERS ----------
     def register_user(self, name: str, birth_date: str, email: str, cpf: str) -> tuple[bool, str, Optional[User]]:
@@ -160,3 +165,20 @@ class CarWashService:
 
     def list_orders(self) -> List[ServiceOrder]:
         return self.order_repo.list_all()
+
+    # ---------- REPORTS ----------
+    def build_report(self, fmt: str) -> AbstractReport:
+        """Retorna a subclasse de AbstractReport correspondente ao formato solicitado."""
+        kwargs = dict(
+            user_repo=self.user_repo,
+            order_repo=self.order_repo,
+            account_repo=self.account_repo,
+            service_repo=self.service_repo,
+            logger=self.logger,
+        )
+        fmt = fmt.strip().lower()
+        if fmt == "html":
+            return HtmlReport(**kwargs)
+        if fmt == "txt":
+            return TxtReport(**kwargs)
+        raise ValueError(f"Formato de relatório desconhecido: '{fmt}'. Use 'html' ou 'txt'.")

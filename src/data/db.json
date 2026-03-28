@@ -48,6 +48,13 @@
       "birth_date": "18/05/2002",
       "email": "lucasat@gmail.com",
       "cpf": "64343254398"
+    },
+    {
+      "user_id": "784a1f61-e1b2-40a9-9acf-9a3cfd5c0928",
+      "name": "jefferson",
+      "birth_date": "18/04/2003",
+      "email": "jef@gmail.com",
+      "cpf": "13343243567"
     }
   ],
   "vehicles": [
@@ -124,6 +131,12 @@
       "login": "lucasleiteat",
       "password_hash": "8211aea3e1221cded1ab0dfcbbc641b1d2b183374f0f262b7b019b7eddd74ba7",
       "salt": "f8a3e4b4f8b0f7d97725c7eb424ec90b"
+    },
+    {
+      "user_id": "784a1f61-e1b2-40a9-9acf-9a3cfd5c0928",
+      "login": "jefferreirat",
+      "password_hash": "39286fd5cb5a37d2bbd4f08f37dc4e2d9ca3f5b9d92c8a7d53dd23c645cb3012",
+      "salt": "65f42ab1412bf943624a897ca6210e92"
     }
   ]
 }

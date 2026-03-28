@@ -28,7 +28,7 @@ def main() -> None:
 
     logger = build_python_logging_adapter("carwash")
 
-    carwash_service = CarWashService(user_repo, vehicle_repo, service_repo, order_repo, logger)
+    carwash_service = CarWashService(user_repo, vehicle_repo, service_repo, order_repo, logger, account_repo)
     auth_service = AuthService(account_repo, logger)
 
     Menu(carwash_service, auth_service).run()

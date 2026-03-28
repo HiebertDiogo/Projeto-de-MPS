@@ -41,6 +41,7 @@ class Menu:
             print("7) Criar atendimento (ordem de serviço) (precisa estar logado)")
             print("8) Listar atendimentos")
             print("9) Logout")
+            print("r) Gerar relatório de estatísticas")
             print("0) Sair")
 
             op = input("Escolha: ").strip()
@@ -62,6 +63,8 @@ class Menu:
                 self.list_orders_flow()
             elif op == "9":
                 self.logout_flow()
+            elif op == "r":
+                self.generate_report_flow()
             elif op == "0":
                 print("Saindo...")
                 return
@@ -252,6 +255,42 @@ class Menu:
         print(("" if ok else " ") + msg)
         if ok and order:
             print(f"Ordem: {order.order_id} | Total: R$ {order.total_brl:.2f} | Data: {order.created_at}")
+        self._pause()
+
+    def generate_report_flow(self) -> None:
+        import os
+        from datetime import datetime
+
+        print("\n--- Gerar relatório de estatísticas ---")
+        print("Formatos disponíveis:")
+        print("  1) HTML")
+        print("  2) TXT")
+
+        fmt_choice = self._input_non_empty("Escolha o formato (1 ou 2): ")
+        if fmt_choice == "1":
+            fmt, ext = "html", "html"
+        elif fmt_choice == "2":
+            fmt, ext = "txt", "txt"
+        else:
+            print(" Formato inválido. Escolha 1 (HTML) ou 2 (TXT).")
+            self._pause()
+            return
+
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"relatorio_{timestamp}.{ext}"
+        reports_dir = os.path.abspath(
+            os.path.join(os.path.dirname(__file__), "..", "..", "data", "reports")
+        )
+        output_path = os.path.join(reports_dir, filename)
+
+        try:
+            report = self.carwash_service.build_report(fmt)
+            written_path = report.generate(output_path)
+            print(" Relatório gerado com sucesso!")
+            print(f"  Arquivo: {written_path}")
+        except Exception as exc:
+            print(f" Erro ao gerar relatório: {exc}")
+
         self._pause()
 
     def list_orders_flow(self) -> None:
