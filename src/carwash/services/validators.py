@@ -48,16 +48,15 @@ def validate_non_empty(value: str) -> bool:
 def validate_login(login: str) -> tuple[bool, str]:
     """
     Requirements:
-    - 12 chars
+    - at least 3 chars
     - not empty
-    - no numbers
-    We'll enforce exactly 12 letters (A-Z/a-z) to avoid ambiguity.
+    - letters only (A-Z/a-z), no numbers or special chars
     """
     login = (login or "").strip()
     if not login:
         return False, "Login não pode ser vazio."
-    if len(login) != 12:
-        return False, "Login deve ter exatamente 12 caracteres."
+    if len(login) < 3:
+        return False, "Login deve ter pelo menos 3 caracteres."
     if any(ch.isdigit() for ch in login):
         return False, "Login não pode conter números."
     if not login.isalpha():

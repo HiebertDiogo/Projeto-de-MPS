@@ -86,7 +86,7 @@ class Menu:
             return
 
         while True:
-            login = input("Login (12 letras, sem números): ").strip()
+            login = input("Login (apenas letras, mínimo 3 caracteres): ").strip()
             ok_login, msg_login = validate_login(login)
             if ok_login:
                 break
@@ -198,8 +198,8 @@ class Menu:
         if not services:
             print("(vazio)")
         else:
-            for s in services:
-                print(f"- {s.service_id} | {s.name} | R$ {s.price_brl:.2f}")
+            for idx, s in enumerate(services, start=1):
+                print(f"{idx}) {s.name} | R$ {s.price_brl:.2f}")
         self._pause()
 
     def create_order_flow(self) -> None:
@@ -254,7 +254,7 @@ class Menu:
         ok, msg, order = self.carwash_service.create_order(self.logged_user_id, vehicle.plate, picks)
         print(("" if ok else " ") + msg)
         if ok and order:
-            print(f"Ordem: {order.order_id} | Total: R$ {order.total_brl:.2f} | Data: {order.created_at}")
+            print(f"Total: R$ {order.total_brl:.2f} | Data: {order.created_at}")
         self._pause()
 
     def generate_report_flow(self) -> None:
@@ -297,17 +297,21 @@ class Menu:
         print("\n--- Atendimentos (ordens de serviço) ---")
         orders = self.carwash_service.list_orders()
         users = {u.user_id: u for u in self.carwash_service.list_users()}
+        services_map = {s.service_id: s for s in self.carwash_service.list_services()}
         if not orders:
             print("(vazio)")
             self._pause()
             return
 
-        for o in orders:
+        for idx, o in enumerate(orders, start=1):
             u = users.get(o.user_id)
             uname = u.name if u else "Desconhecido"
-            print(f"\n- {o.order_id} | Cliente: {uname} | Veículo: {o.vehicle_plate} | Total: R$ {o.total_brl:.2f} | {o.created_at}")
+            print(f"\n{idx}) Cliente: {uname} | Veículo: {o.vehicle_plate} | Total: R$ {o.total_brl:.2f} | {o.created_at}")
             print("  Serviços:")
             for sid in o.service_ids:
-                print(f"    • {sid}")
+                s = services_map.get(sid)
+                sname = s.name if s else f"(serviço removido)"
+                price = f" - R$ {s.price_brl:.2f}" if s else ""
+                print(f"    • {sname}{price}")
 
         self._pause()
