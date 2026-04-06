@@ -1,5 +1,3 @@
-
-
 from __future__ import annotations
 
 from typing import List, Optional
@@ -73,7 +71,7 @@ class Menu:
 
     def create_account_flow(self) -> None:
         print("\n--- Criar conta ---")
-        # Para associar conta ao usuário, primeiro cadastramos usuário (mínimo) ou reutilizamos por CPF.
+        # Para associar conta ao usuário, primeiro cadastra usuário (mínimo) ou reutilizamos por CPF.
         name = self._input_non_empty("Nome: ")
         birth = self._input_non_empty("Data de nascimento (dd/mm/aaaa): ")
         email = self._input_non_empty("Email: ")
@@ -202,39 +200,42 @@ class Menu:
                 print(f"{idx}) {s.name} | R$ {s.price_brl:.2f}")
         self._pause()
 
+
     def create_order_flow(self) -> None:
         if not self._require_login():
             return
 
         print("\n--- Criar atendimento (ordem de serviço) ---")
-        # choose a vehicle for logged user (to keep simple and consistent)
-        my_vehicles = self.carwash_service.list_vehicles_by_user(self.logged_user_id)
-        if not my_vehicles:
-            print(" Você não tem veículos cadastrados. Cadastre primeiro (opção 3).")
+        
+        all_vehicles = self.carwash_service.list_vehicles() 
+        
+        if not all_vehicles:
+            print(" Não há veículos cadastrados no sistema.")
             self._pause()
             return
 
-        print("Seus veículos:")
-        for idx, v in enumerate(my_vehicles, start=1):
-            print(f"{idx}) {v.plate} - {v.model} ({v.color})")
+        print("Veículos disponíveis:")
+        for idx, v in enumerate(all_vehicles, start=1):
+            print(f"{idx}) {v.plate} - {v.model} (Dono ID: {v.owner_user_id})")
 
         while True:
             try:
                 choice = int(self._input_non_empty("Escolha o veículo: "))
-                if 1 <= choice <= len(my_vehicles):
-                    vehicle = my_vehicles[choice - 1]
+                if 1 <= choice <= len(all_vehicles):
+                    vehicle = all_vehicles[choice - 1]
+                    target_user_id = vehicle.owner_user_id 
                     break
             except ValueError:
                 pass
             print(" Opção inválida.")
-
+          
         services = self.carwash_service.list_services()
         if not services:
             print(" Não há serviços cadastrados. Cadastre primeiro (opção 4).")
             self._pause()
             return
 
-        print("\nServiços disponíveis (digite os números separados por vírgula):")
+        print("\nServiços disponíveis (digite os números dos serviços que deseja realizar separando-os por vírgula):")
         for idx, s in enumerate(services, start=1):
             print(f"{idx}) {s.name} - R$ {s.price_brl:.2f}")
 
@@ -251,11 +252,12 @@ class Menu:
             except ValueError:
                 continue
 
-        ok, msg, order = self.carwash_service.create_order(self.logged_user_id, vehicle.plate, picks)
+        ok, msg, order = self.carwash_service.create_order(target_user_id, vehicle.plate, picks)
         print(("" if ok else " ") + msg)
         if ok and order:
             print(f"Total: R$ {order.total_brl:.2f} | Data: {order.created_at}")
         self._pause()
+
 
     def generate_report_flow(self) -> None:
         import os

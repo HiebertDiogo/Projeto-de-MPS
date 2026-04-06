@@ -55,6 +55,55 @@
       "birth_date": "18/04/2003",
       "email": "jef@gmail.com",
       "cpf": "13343243567"
+    },
+    {
+      "user_id": "573c5041-20c9-4ddd-8b4f-7c0146ad2349",
+      "name": "Adriana",
+      "birth_date": "09/10/1980",
+      "email": "adrianalima@gmail.com",
+      "cpf": "13456789012"
+    },
+    {
+      "user_id": "ca99169e-acac-4c2e-905a-83ceeb12581e",
+      "name": "Júlia",
+      "birth_date": "23/02/1998",
+      "email": "juliabraga@gmail.com",
+      "cpf": "18928753389"
+    },
+    {
+      "user_id": "9e473d4d-a0d5-419d-b40b-751678e4140f",
+      "name": "Paulo",
+      "birth_date": "23/09/1965",
+      "email": "pauloandre12@gmail.com",
+      "cpf": "89263790812"
+    },
+    {
+      "user_id": "b60f77c6-d65f-49f7-8ff2-779d3202bfb6",
+      "name": "Maria",
+      "birth_date": "08/12/1978",
+      "email": "mariaflima@gmail.com",
+      "cpf": "12345678945"
+    },
+    {
+      "user_id": "03c23d2e-6396-41e0-b83a-80c6e972aeed",
+      "name": "lúcia",
+      "birth_date": "19/04/1995",
+      "email": "lucia12@gmail.com",
+      "cpf": "12654327890"
+    },
+    {
+      "user_id": "c7120f5d-6657-4517-ab02-03b4a3720184",
+      "name": "amanda",
+      "birth_date": "08/12/1995",
+      "email": "amandalins@gmail.com",
+      "cpf": "12345672340"
+    },
+    {
+      "user_id": "f45d39bc-b355-42f2-97cc-7d99c4be0de7",
+      "name": "Ana",
+      "birth_date": "02/01/1998",
+      "email": "anabarros@gmail.com",
+      "cpf": "12456739044"
     }
   ],
   "vehicles": [
@@ -65,22 +114,46 @@
       "owner_user_id": "5019d1f6-248d-4ca8-882a-b7ff5c64a92a"
     },
     {
-      "plate": "EMY-2301",
+      "plate": "EMY2301",
       "model": "SW4",
       "color": "Preta",
       "owner_user_id": "0d56b172-b9dc-4220-ab9f-7e12c106bfae"
     },
     {
-      "plate": "LBB-6666",
+      "plate": "LBB6666",
       "model": "Fusca",
       "color": "Rosa",
       "owner_user_id": "eff337be-3872-43a0-a5cb-85a24c1186f8"
     },
     {
-      "plate": "GIO-9999",
+      "plate": "GIO9999",
       "model": "SUV",
       "color": "Preto",
       "owner_user_id": "c6984075-c9bb-40e6-94d8-1246089d6de4"
+    },
+    {
+      "plate": "UXP9080",
+      "model": "Honda Civic",
+      "color": "Branco",
+      "owner_user_id": "9e473d4d-a0d5-419d-b40b-751678e4140f"
+    },
+    {
+      "plate": "UXL8970",
+      "model": "HB20",
+      "color": "vermelho",
+      "owner_user_id": "03c23d2e-6396-41e0-b83a-80c6e972aeed"
+    },
+    {
+      "plate": "YHG2019",
+      "model": "Palio",
+      "color": "prata",
+      "owner_user_id": "c7120f5d-6657-4517-ab02-03b4a3720184"
+    },
+    {
+      "plate": "ENI9284",
+      "model": "corsa",
+      "color": "preto",
+      "owner_user_id": "f45d39bc-b355-42f2-97cc-7d99c4be0de7"
     }
   ],
   "services": [
@@ -93,6 +166,11 @@
       "service_id": "d9689532-889b-4537-a110-f25cfccb93cb",
       "name": "Lavagem",
       "price_brl": 50.0
+    },
+    {
+      "service_id": "ebfca828-3785-4b76-8a40-bb2ffa05873e",
+      "name": "Lavagem completa",
+      "price_brl": 100.0
     }
   ],
   "orders": [
@@ -104,6 +182,16 @@
         "e825f891-65e8-4b68-bb42-416f66fea79e"
       ],
       "created_at": "2026-03-05T01:36:46",
+      "total_brl": 30.0
+    },
+    {
+      "order_id": "6701d0fc-c454-45d3-b8b7-cdc6946f54c9",
+      "user_id": "f45d39bc-b355-42f2-97cc-7d99c4be0de7",
+      "vehicle_plate": "ENI9284",
+      "service_ids": [
+        "e825f891-65e8-4b68-bb42-416f66fea79e"
+      ],
+      "created_at": "2026-04-06T11:59:10",
       "total_brl": 30.0
     }
   ],
@@ -137,6 +225,24 @@
       "login": "jefferreirat",
       "password_hash": "39286fd5cb5a37d2bbd4f08f37dc4e2d9ca3f5b9d92c8a7d53dd23c645cb3012",
       "salt": "65f42ab1412bf943624a897ca6210e92"
+    },
+    {
+      "user_id": "573c5041-20c9-4ddd-8b4f-7c0146ad2349",
+      "login": "alm",
+      "password_hash": "3d986d6bdb9e18b3af640679653a6485de0aa6f7918314bf06fbe29d53a99780",
+      "salt": "ae8148d923bcd94d505b5e21f3596241"
+    },
+    {
+      "user_id": "ca99169e-acac-4c2e-905a-83ceeb12581e",
+      "login": "julia",
+      "password_hash": "f5da3185685a2bafd2f66d30e83a2978c256f06985493ea8bf3d2a4ff4a9b09d",
+      "salt": "f94107287f1ba619eb10f59ba5d34acc"
+    },
+    {
+      "user_id": "b60f77c6-d65f-49f7-8ff2-779d3202bfb6",
+      "login": "maria",
+      "password_hash": "63360b648930c07c8fb53f6de09c64723df4a38f6de941cf18b727568c50b2d7",
+      "salt": "53cc7c23e51344050027578a083d527b"
     }
   ]
 }
