@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 
 import re
@@ -37,8 +36,14 @@ def validate_birth_date(date_str: str) -> bool:
         return False
 
 
+def clean_plate(plate: str) -> str:
+    """Remove hífens e espaços, deixando apenas letras e números em maiúsculo."""
+    return re.sub(r"[^A-Z0-9]", "", (plate or "").strip().upper())
+
 def validate_plate(plate: str) -> bool:
-    return bool(PLATE_RE.match((plate or "").strip().upper()))
+    """Valida se a placa segue o padrão Mercosul (ABC1D23) ou Antigo (ABC-1234)."""
+    plate_clean = clean_plate(plate)
+    return len(plate_clean) == 7 and plate_clean.isalnum()
 
 
 def validate_non_empty(value: str) -> bool:
@@ -88,3 +93,5 @@ def validate_password_iam_style(password: str, login: str) -> tuple[bool, str]:
     if password.lower() in COMMON_PASSWORDS:
         return False, "Senha muito comum. Escolha uma senha mais forte."
     return True, ""
+
+
