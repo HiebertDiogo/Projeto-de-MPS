@@ -104,6 +104,20 @@
       "birth_date": "02/01/1998",
       "email": "anabarros@gmail.com",
       "cpf": "12456739044"
+    },
+    {
+      "user_id": "af867681-fe53-49fa-b25f-db3ba609daf1",
+      "name": "Davi",
+      "birth_date": "25/01/2003",
+      "email": "Davibubu@gmail.com",
+      "cpf": "74321968686"
+    },
+    {
+      "user_id": "f7df5cd2-4c36-4242-9a45-d2e145284a20",
+      "name": "Jorge",
+      "birth_date": "26/01/2000",
+      "email": "jorge@gmail.com",
+      "cpf": "45678912389"
     }
   ],
   "vehicles": [
@@ -154,6 +168,12 @@
       "model": "corsa",
       "color": "preto",
       "owner_user_id": "f45d39bc-b355-42f2-97cc-7d99c4be0de7"
+    },
+    {
+      "plate": "BMEB569",
+      "model": "Creta",
+      "color": "preto",
+      "owner_user_id": "f7df5cd2-4c36-4242-9a45-d2e145284a20"
     }
   ],
   "services": [
@@ -171,6 +191,16 @@
       "service_id": "ebfca828-3785-4b76-8a40-bb2ffa05873e",
       "name": "Lavagem completa",
       "price_brl": 100.0
+    },
+    {
+      "service_id": "ec63a35f-7035-472c-818a-d0f9a845fe15",
+      "name": "Lavagem Simples",
+      "price_brl": 50.0
+    },
+    {
+      "service_id": "8aa88cd8-ba12-48c3-ac13-ec9bdfbdd924",
+      "name": "Lavagem à seco",
+      "price_brl": 50.0
     }
   ],
   "orders": [
@@ -193,6 +223,36 @@
       ],
       "created_at": "2026-04-06T11:59:10",
       "total_brl": 30.0
+    },
+    {
+      "order_id": "e00199c9-793e-4921-b355-ba99589b07bd",
+      "user_id": "5019d1f6-248d-4ca8-882a-b7ff5c64a92a",
+      "vehicle_plate": "ABC1D23",
+      "service_ids": [
+        "ec63a35f-7035-472c-818a-d0f9a845fe15"
+      ],
+      "created_at": "2026-04-06T21:05:11",
+      "total_brl": 50.0
+    },
+    {
+      "order_id": "170fb1b8-2102-4f09-990f-8e9af3f6bb28",
+      "user_id": "f7df5cd2-4c36-4242-9a45-d2e145284a20",
+      "vehicle_plate": "BMEB569",
+      "service_ids": [
+        "ec63a35f-7035-472c-818a-d0f9a845fe15"
+      ],
+      "created_at": "2026-04-06T22:33:20",
+      "total_brl": 50.0
+    },
+    {
+      "order_id": "906c2758-0851-4988-87bc-d0011f6f0bd3",
+      "user_id": "03c23d2e-6396-41e0-b83a-80c6e972aeed",
+      "vehicle_plate": "UXL8970",
+      "service_ids": [
+        "8aa88cd8-ba12-48c3-ac13-ec9bdfbdd924"
+      ],
+      "created_at": "2026-04-06T22:40:35",
+      "total_brl": 45.0
     }
   ],
   "accounts": [
@@ -243,6 +303,12 @@
       "login": "maria",
       "password_hash": "63360b648930c07c8fb53f6de09c64723df4a38f6de941cf18b727568c50b2d7",
       "salt": "53cc7c23e51344050027578a083d527b"
+    },
+    {
+      "user_id": "af867681-fe53-49fa-b25f-db3ba609daf1",
+      "login": "davibubu",
+      "password_hash": "881ca8cbd5e0e02adf9e32bd88e9f49d521376bd633d92240e6179588e87bdd9",
+      "salt": "fe98e537538e23b0883d74880cd747d4"
     }
   ]
 }

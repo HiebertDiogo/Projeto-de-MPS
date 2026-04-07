@@ -9,6 +9,8 @@ Sistema de linha de comando para um **lava jato**, com:
 - **Login** com validações (12 chars, não vazio, sem números)
 - **Política de senha estilo IAM**
 - **Persistência em JSON** (`data/db.json`)
+- **Padrões de Design**: Command, Observer, Memento, Strategy, Logger, Factory
+- **Geração de Relatórios** (HTML e TXT)
 
 ---
 
@@ -30,13 +32,19 @@ O arquivo `data/db.json` é criado automaticamente na primeira execução.
 
 ```
 carwash/
-  main.py
+  main_carwash.py  # ponto de entrada principal
+  commands/        # padrão Command para operações
+  logger/          # logging do sistema
+  memento/         # padrão Memento para undo de usuários
   models/          # entidades (User, Vehicle, Service, ServiceOrder, Account)
-  services/        # regras de negócio (AuthService, CarWashService, validators)
-  repositories/    # camada de persistência (JSON DB + repos)
+  observer/        # padrão Observer para notificações de ordens
+  repositories/    # camada de persistência (JSON DB + repos + Factory para criação de repositórios)
+  services/        # regras de negócio (AuthService, CarWashService, validators, reports)
+  strategy/        # padrão Strategy para descontos
   ui/              # menu de CLI
 data/
   db.json          # "banco" JSON
+  reports/         # relatórios gerados (HTML, TXT)
 main.py            # launcher
 ```
 
@@ -52,7 +60,12 @@ main.py            # launcher
 6. **Listar serviços**
 7. **Criar atendimento (ordem de serviço)** (precisa estar logado)
 8. **Listar atendimentos**
-9. **Logout**
+9. **Gerar relatório de estatísticas**
+10. **Atualizar dados de usuário** [Memento]
+11. **Desfazer última atualização de usuário** [Memento]
+12. **Configurar desconto para ordens** [Strategy]
+13. **Resumo da sessão** [Observer]
+14. **Logout**
 0. **Sair**
 
 ---
@@ -96,6 +109,23 @@ Todos os dados são salvos em `data/db.json` no formato:
   "accounts": []
 }
 ```
+
+---
+
+## Padrões de Design Implementados
+
+- **Command**: Usado para encapsular operações como criação de usuários, serviços e ordens.
+- **Observer**: Notifica mudanças em ordens de serviço.
+- **Memento**: Permite desfazer atualizações de dados de usuário.
+- **Strategy**: Implementa diferentes estratégias de desconto para ordens.
+- **Factory**: Cria instâncias de repositórios de forma centralizada.
+- **Logger**: Sistema de logging para registrar operações.
+
+---
+
+## Geração de Relatórios
+
+O sistema permite gerar relatórios de estatísticas em formatos **HTML** e **TXT**, salvos em `data/reports/`.
 
 ---
 

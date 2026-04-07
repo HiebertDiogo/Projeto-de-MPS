@@ -28,3 +28,12 @@ class UserRepo:
 
     def list_all(self) -> List[User]:
         return [User.from_dict(u) for u in self.db.data["users"]]
+
+    def update(self, user: User) -> bool:
+        """Atualiza os dados de um usuário existente pelo user_id. Retorna True se encontrado."""
+        for idx, u in enumerate(self.db.data["users"]):
+            if u["user_id"] == user.user_id:
+                self.db.data["users"][idx] = user.to_dict()
+                self.db.save()
+                return True
+        return False

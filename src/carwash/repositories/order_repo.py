@@ -22,3 +22,7 @@ class OrderRepo:
 
     def list_all(self) -> List[ServiceOrder]:
         return [ServiceOrder.from_dict(o) for o in self.db.data["orders"]]
+
+    def list_by_user(self, user_id: str) -> List[ServiceOrder]:
+        return [ServiceOrder.from_dict(o) for o in self.db.data["orders"]
+                if o["user_id"] == user_id]
